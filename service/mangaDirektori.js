@@ -20,7 +20,7 @@ async function create(mangaData) {
       `INSERT INTO manga 
       (judul, penulis, penerbit, tanggal_rilis, rating, jumlah_volume, url_baca) 
       VALUES 
-      ('${mangaData.judul}', '${mangaData.penulis}', '${mangaData.penerbit}', ${mangaData.tanggal_rilis}, ${mangaData.rating}, ${mangaData.jumlah_volume}, '${mangaData.url_baca}')`
+      ('${mangaData.judul}', '${mangaData.penulis}', '${mangaData.penerbit}', '${mangaData.tanggal_rilis}', ${mangaData.rating}, ${mangaData.jumlah_volume}, '${mangaData.url_baca}')`
     );
 
     if (result.affectedRows) {
@@ -40,7 +40,7 @@ async function update(id, mangaData) {
     const result = await db.query(
       `UPDATE manga 
       SET judul="${mangaData.judul}", penulis="${mangaData.penulis}", penerbit="${mangaData.penerbit}", 
-      tanggal_rilis=${mangaData.tanggal_rilis}, rating=${mangaData.rating}, jumlah_volume=${mangaData.jumlah_volume}, 
+      tanggal_rilis="${mangaData.tanggal_rilis}", rating=${mangaData.rating}, jumlah_volume=${mangaData.jumlah_volume}, 
       url_baca="${mangaData.url_baca}"
       WHERE id=${id}`
     );
