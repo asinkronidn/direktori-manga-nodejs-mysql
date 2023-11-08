@@ -9,6 +9,7 @@ app.use(
     extended: true,
   })
 );
+app.use(express.static('public'))
 
 //Menggunakan Routes yang di buat
 app.use("/mangalist", mangaDirektoriRouter);

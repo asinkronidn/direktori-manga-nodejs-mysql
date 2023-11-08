@@ -14,13 +14,16 @@ async function getMultiple(page = 1) {
 }
 
 //UPDATE
-async function create(mangaData) {
+async function create(mangaData, fileMangaData) {
   try {
+    console.log(fileMangaData)
+    // fileMangaData.path
+    // fileMangaData
     const result = await db.query(
       `INSERT INTO manga 
       (judul, penulis, penerbit, tanggal_rilis, rating, jumlah_volume, url_baca) 
       VALUES 
-      ('${mangaData.judul}', '${mangaData.penulis}', '${mangaData.penerbit}', ${mangaData.tanggal_rilis}, ${mangaData.rating}, ${mangaData.jumlah_volume}, '${mangaData.url_baca}')`
+      ('${mangaData.judul}', '${mangaData.penulis}', '${mangaData.penerbit}', '${mangaData.tanggal_rilis}', ${mangaData.rating}, ${mangaData.jumlah_volume}, 'http://localhost:3000/${fileMangaData.path}')`
     );
 
     if (result.affectedRows) {
@@ -29,6 +32,7 @@ async function create(mangaData) {
       return { message: 'Error in creating manga' };
     }
   } catch (error) {
+    console.error(error)
     // Handle any database errors here
     return { message: 'Error in creating manga' };
   }
@@ -40,7 +44,7 @@ async function update(id, mangaData) {
     const result = await db.query(
       `UPDATE manga 
       SET judul="${mangaData.judul}", penulis="${mangaData.penulis}", penerbit="${mangaData.penerbit}", 
-      tanggal_rilis=${mangaData.tanggal_rilis}, rating=${mangaData.rating}, jumlah_volume=${mangaData.jumlah_volume}, 
+      tanggal_rilis="${mangaData.tanggal_rilis}", rating=${mangaData.rating}, jumlah_volume=${mangaData.jumlah_volume}, 
       url_baca="${mangaData.url_baca}"
       WHERE id=${id}`
     );
