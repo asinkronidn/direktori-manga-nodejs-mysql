@@ -34,9 +34,11 @@ router.post('/',
   }
 })
 
-router.put('/:id', async function(req, res, next){
+router.put('/:id',
+   upload.single('file_komik'),
+   async function(req, res, next){
   try{
-    res.json(await mangaDirektori.update(req.params.id, req.body))
+    res.json(await mangaDirektori.update(req.params.id, req.body, req.file))
   } catch (err) {
     console.error(`Error Update data manga`, err.message);
     next(err);
