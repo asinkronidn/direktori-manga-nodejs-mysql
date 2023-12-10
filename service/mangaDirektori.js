@@ -21,13 +21,14 @@ async function create(mangaData, fileMangaData) {
       `INSERT INTO manga 
       (judul, penulis, penerbit, tanggal_rilis, rating, jumlah_volume, url_baca) 
       VALUES 
-      ('${mangaData.judul}', '${mangaData.penulis}', '${mangaData.penerbit}', '${mangaData.tanggal_rilis}', ${mangaData.rating}, ${mangaData.jumlah_volume}, 'http://localhost:3000/uploads/${fileMangaData.originalname}')`
+      ('${mangaData.judul}', '${mangaData.penulis}', '${mangaData.penerbit}', 
+      '${mangaData.tanggal_rilis}', ${mangaData.rating}, ${mangaData.jumlah_volume}, 'http://localhost:3001/uploads/${fileMangaData.originalname}')`
     );
 
     if (result.affectedRows) {
       return { message: 'Manga created successfully' };
     } else {
-      return { message: 'Error in creating manga' };
+      return { message: 'Error creating manga' };
     }
   } catch (error) {
     console.error(error)

@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+var cors = require('cors')
+const port = 3001;
 //Mengambil dari routes
 const mangaDirektoriRouter = require('./routes/mangaDirektori')
+
+app.use(cors())
 app.use(express.json());
 app.use(
   express.urlencoded({
