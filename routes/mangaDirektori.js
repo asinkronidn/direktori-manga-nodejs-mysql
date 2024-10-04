@@ -36,7 +36,7 @@ router.post(
         throw new Error("Type File Harus PDF/PNG");
       }
 
-      if (req.file.size > 150000) {
+      if (file.size > 15 * 1024 * 1024) {
         throw new Error("File Harus Kurang Dari 15mb");
       }
 
